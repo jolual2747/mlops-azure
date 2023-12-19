@@ -3,6 +3,14 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# azure ML
+*.amltmp 
+*.amltemp
+*.amlignore
+
+# csv files
+*.csv
+
 # C extensions
 *.so
 
