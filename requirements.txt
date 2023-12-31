@@ -3,6 +3,10 @@ azureml-core==1.54.0.post1
 azureml-mlflow==1.54.0.post1
 ipykernel
 ipython
+fastapi==0.104.0
 mlflow==2.9.2
 scikit-learn==1.2.0
 pytest
+uvicorn==0.23.2
+starlette==0.27.0
+pydantic==2.4.2
