@@ -6,7 +6,7 @@ on:
     branches: [master]
 
 env:
-  IMAGE_NAME: heartdiseaseapp
+  IMAGE_NAME: heartdisease
 
 permissions:
   id-token: write
@@ -48,7 +48,7 @@ jobs:
         run: echo tag $IMAGE_NAME:latest heartdiseaseapp.azurecr.io/$IMAGE_NAME:latest
       - name: Push image to Azure Container Registry 
         run: 
-          docker tag ${{ env.IMAGE_NAME }} heartdiseaseapp.azurecr.io/${{ env.IMAGE_NAME }}:latest
+          docker tag ${{ env.IMAGE_NAME }}:latest heartdiseaseapp.azurecr.io/${{ env.IMAGE_NAME }}:latest
           docker push heartdiseaseapp.azurecr.io/${{ env.IMAGE_NAME }}:latest
   azure-deploy:
     needs: azure-container
