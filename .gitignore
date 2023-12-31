@@ -11,6 +11,9 @@ __pycache__/
 # csv files
 *.csv
 
+#env
+*.env
+
 # C extensions
 *.so
 
