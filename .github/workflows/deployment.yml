@@ -69,7 +69,7 @@ jobs:
           --resource-group machine-learning \
           --location centralus \
           --environment my-container-apps \
-          --image heartdiseaseapp.azurecr.io/${{ env.IMAGE_NAME }}:latest \
+          --image heartdiseaseapp.azurecr.io/heartdisease:latest \
           --target-port 8080 \
           --ingress external \
           --query properties.configuration.ingress.fqdn
