@@ -11,9 +11,8 @@ class ModelService:
         self.model = self.con.load_model(self.model_name, self.model_version)
     
     def row_prediction(self, data: raw_data):
-        data_to_predict = [data.model_dump()]
-        pred = self.model.predict(data_to_predict)
-        return pred
-        
-
-
+        data_to_predict = pd.DataFrame.from_records([data.model_dump()])
+        print(data_to_predict)
+        pred = self.model.predict(data_to_predict)[0]
+        prob = self.model.predict_proba(data_to_predict)[:,1][0]
+        return pred, prob
