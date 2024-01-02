@@ -9,7 +9,7 @@ env:
   IMAGE_NAME: heartdisease
   WORKSPACE: ${{ secrets.WORKSPACE }} 
   WORKSPACE_LOCATION: ${{ secrets.WORKSPACE_LOCATION }} 
-  SUBSCRIPTION: ${{ secrets.SUBSCRIPTION }} 
+  SUBSCRIPTION: ${{ secrets.AZURE_SUBSCRIPTION_ID }} 
   RESOURCE_GROUP: ${{ secrets.RESOURCE_GROUP }} 
 
 permissions:
