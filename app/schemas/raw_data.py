@@ -19,20 +19,22 @@ class raw_data(BaseModel):
         "json_schema_extra": {
             "examples" : [
                 {
-                    "age": 14,
-                    "sex": "mouse",
-                    "cp": "tech",
-                    "trestbps": "Wireless mouse for PC",
-                    "chol": 4.5,
-                    "fbs": 5,
-                    "restecg": "Wireless mouse for PC",
-                    "thalach": 4.5,
-                    "exang": "Wireless mouse for PC",
-                    "oldpeak": 4.5,
-                    "slope": "Wireless mouse for PC",
-                    "ca": 4.5,
-                    "thal": "Wireless mouse for PC"
+                    "age":63,
+                    "sex":1,
+                    "cp":1,
+                    "trestbps":145,
+                    "chol":233,
+                    "fbs":1,
+                    "restecg":2,
+                    "thalach":150,
+                    "exang":0,
+                    "oldpeak":2.3,
+                    "slope":3,
+                    "ca":0,
+                    "thal":"fixed"
                 }
             ]
         }
     }
+
+

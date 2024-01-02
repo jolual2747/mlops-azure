@@ -6,7 +6,7 @@ from azure.identity import DefaultAzureCredential
 
 class AzuremlCon:
     def __init__(self) -> None:
-        load_dotenv('../../secrets.env')
+        load_dotenv('./secrets.env')
         self.WORKSPACE = os.getenv('WORKSPACE')
         self.WORKSPACE_LOCATION = os.getenv('WORKSPACE_LOCATION')
         self.SUBSCRIPTION_ID = os.getenv('SUBSCRIPTION_ID')
