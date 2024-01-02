@@ -32,14 +32,6 @@ jobs:
           pip install -r requirements.txt
       - name: Run tests
         run: python -m pytest ./tests
-      - name: Azure CLI login
-        uses: azure/login@v1
-        with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }} 
-      - name: test api
-        run: uvicorn app.app:app --port=8002
   azure-container:
     needs: test
     runs-on: ubuntu-latest
