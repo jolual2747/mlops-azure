@@ -7,7 +7,7 @@ app = FastAPI()
 
 app.include_router(model_router)
 
-@app.get('/home', tags = ['home'], response_model=HTMLResponse)
+@app.get('/home', tags = ['home'])
 def home():
     return HTMLResponse("<h1>Welcome</h1>")
 
