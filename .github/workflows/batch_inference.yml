@@ -38,4 +38,4 @@ jobs:
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }} 
       - name: Run batch inference
         run:
-          python batch_inference/batch_inference.py
+          python batch_service/batch_service.py 
