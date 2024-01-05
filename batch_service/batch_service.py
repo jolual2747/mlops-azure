@@ -11,7 +11,7 @@ def batch_service(fetch_data_api:str, path:str, model_name:str, model_version:in
     fetch_data(fetch_data_api, path)
 
     # make batch prediction and store results on local temp
-    predictions_path = f"batch_service/tmp/predictions_{date.today().strftime('%Y-%m-%d')}2.csv"
+    predictions_path = f"batch_service/tmp/predictions_{date.today().strftime('%Y-%m-%d')}.csv"
     predict(
         model_name=model_name, 
         model_version=model_version, 
