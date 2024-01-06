@@ -1,28 +1,26 @@
 import requests
 import streamlit as st
 
-# Función para hacer la solicitud POST
+# Function to make POST
 def get_prediction(data):
-    # URL del endpoint donde se realizará la solicitud POST
+    """Make POST request to predict endpoint."""
+
     url = "http://api:8000/predict"
-
-    # Hacer la solicitud POST con los datos ingresados por el usuario
     response = requests.post(url, json=data)
-
-    # Obtener la respuesta en formato JSON
     prediction = response.json()
-
     return prediction
 
-# Crear la interfaz de usuario con Streamlit
 def main():
-    st.title('Clasificador de datos')
+    """Streamlit app to make inference on input data."""
+    st.title('Heart Disease App Classifier')
+    st.image('heart_disease.jpeg', width=300)
+    st.write('This app predicts a heart disease based on certain variables...')  
 
-    st.write('Ingrese los datos para realizar la predicción:')
+    # Input data
 
-    # Obtener los datos ingresados por el usuario
-    age = st.number_input('Edad', value=0, step=1)
-    sex = st.number_input('Sexo (0 o 1)', value=0, step=1)
+    st.write('Enter data to make prediction:')
+    age = st.number_input('Age', value=0, step=1)
+    sex = st.number_input('Sex (0 o 1)', value=0, step=1)
     cp = st.number_input('Chest Pain Type', value=0, step=1)
     trestbps = st.number_input('Trestbps', value=0, step=1)
     chol = st.number_input('Chol', value=0, step=1)
@@ -35,9 +33,8 @@ def main():
     ca = st.number_input('Ca', value=0, step=1)
     thal = st.selectbox('Thal', ['normal', 'fixed', 'reversible'])
 
-    # Botón para realizar la predicción
-    if st.button('Realizar predicción'):
-        # Crear un diccionario con los datos ingresados por el usuario
+    if st.button('Make prediction'):
+        # Dict with input data
         user_data = {
             'age': int(age),
             'sex': int(sex),
@@ -54,12 +51,12 @@ def main():
             'thal': str(thal)
         }
 
-        # Hacer la solicitud POST con los datos ingresados por el usuario
+        # POST request
         prediction = get_prediction(user_data)
 
-        # Mostrar el resultado de la predicción
-        st.write(f'Clase: {prediction["label"]}')
-        st.write(f'Probabilidad: {prediction["probability"]}')
+        # Show results
+        st.write(f'Label: {prediction["label"]}')
+        st.write(f'Probability: {prediction["probability"]}')
 
 if __name__ == "__main__":
     main()
