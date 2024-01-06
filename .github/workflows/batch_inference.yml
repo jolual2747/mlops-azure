@@ -1,7 +1,9 @@
 name: Batch inference
 run-name: Batch inference and store in Azure Blob Storage
 
-on: workflow_dispatch
+on:
+  schedule:
+    - cron: '0 16 1 * *'
 
 permissions:
   id-token: write

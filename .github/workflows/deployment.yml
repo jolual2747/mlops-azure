@@ -44,7 +44,7 @@ jobs:
       - name: Setup QEMU
         uses: docker/setup-qemu-action@v2
       - name: Build the Docker image
-        run: docker build -t ${{ env.IMAGE_NAME }} .
+        run: docker-compose -f docker-compose.yml build
       - name: Azure CLI login
         uses: azure/login@v1
         with:
@@ -53,31 +53,33 @@ jobs:
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }} 
       - name: AZ ACR login
         run: az acr login --name heartdiseaseapp
-      - name: Tag image  
+      - name: Tag images  
         run: 
-          docker tag ${{ env.IMAGE_NAME }}:latest heartdiseaseapp.azurecr.io/${{ env.IMAGE_NAME }}:latest
+          docker tag heartdisease-api:latest heartdiseaseapp.azurecr.io/api:latest
+          docker tag heartdisease-front:latest heartdiseaseapp.azurecr.io/front:latest
       - name: Push image to Azure Container Registry 
         run: 
-          docker push heartdiseaseapp.azurecr.io/${{ env.IMAGE_NAME }}:latest
-  azure-deploy:
-    needs: azure-container
-    runs-on: ubuntu-latest
-    steps:
-      - name: Azure CLI login
-        uses: azure/login@v1
-        with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }} 
-      - name: Deploy image to containerapp 
-        run: | 
-          az containerapp up \
-          --name heart-disease-app \
-          --resource-group $RESOURCE_GROUP \
-          --location centralus \
-          --environment 'my-container-apps' \
-          --image heartdiseaseapp.azurecr.io/heartdisease:latest \
-          --target-port 8080 \
-          --ingress external \
-          --query properties.configuration.ingress.fqdn \
-          --env-vars "IMAGE_NAME=$IMAGE_NAME" "WORKSPACE=$WORKSPACE" "WORKSPACE_LOCATION=$WORKSPACE_LOCATION" "SUBSCRIPTION=$SUBSCRIPTION" "RESOURCE_GROUP=$RESOURCE_GROUP" "AZURE_CLIENT_ID=$AZURE_CLIENT_ID" "AZURE_TENANT_ID=$AZURE_TENANT_ID" "AZURE_CLIENT_SECRET=$AZURE_CLIENT_SECRET" 
+          docker push heartdiseaseapp.azurecr.io/api:latest
+          docker push heartdiseaseapp.azurecr.io/front:latest
+  # azure-deploy:
+  #   needs: azure-container
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Azure CLI login
+  #       uses: azure/login@v1
+  #       with:
+  #         client-id: ${{ secrets.AZURE_CLIENT_ID }}
+  #         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+  #         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }} 
+  #     - name: Deploy image to containerapp 
+  #       run: | 
+  #         az containerapp up \
+  #         --name heart-disease-app \
+  #         --resource-group $RESOURCE_GROUP \
+  #         --location centralus \
+  #         --environment 'my-container-apps' \
+  #         --image heartdiseaseapp.azurecr.io/heartdisease:latest \
+  #         --target-port 8080 \
+  #         --ingress external \
+  #         --query properties.configuration.ingress.fqdn \
+  #         --env-vars "IMAGE_NAME=$IMAGE_NAME" "WORKSPACE=$WORKSPACE" "WORKSPACE_LOCATION=$WORKSPACE_LOCATION" "SUBSCRIPTION=$SUBSCRIPTION" "RESOURCE_GROUP=$RESOURCE_GROUP" "AZURE_CLIENT_ID=$AZURE_CLIENT_ID" "AZURE_TENANT_ID=$AZURE_TENANT_ID" "AZURE_CLIENT_SECRET=$AZURE_CLIENT_SECRET" 

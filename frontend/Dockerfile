@@ -8,7 +8,7 @@ RUN python -m pip install --upgrade pip
 
 RUN pip install -r requirements.txt
 
-EXPOSE 8081
-EXPOSE 8080
+EXPOSE 8000
+EXPOSE 80
 
-CMD ["streamlit", "run", "--server.port", "8081", "app.py"]
+CMD ["streamlit", "run", "--server.port", "80", "app.py"]
