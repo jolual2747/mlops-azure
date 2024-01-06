@@ -61,25 +61,16 @@ jobs:
         run: |
           docker push heartdiseaseapp.azurecr.io/heartdisease-api:latest
           docker push heartdiseaseapp.azurecr.io/heartdisease-front:latest
-  # azure-deploy:
-  #   needs: azure-container
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Azure CLI login
-  #       uses: azure/login@v1
-  #       with:
-  #         client-id: ${{ secrets.AZURE_CLIENT_ID }}
-  #         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-  #         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }} 
-  #     - name: Deploy image to containerapp 
-  #       run: | 
-  #         az containerapp up \
-  #         --name heart-disease-app \
-  #         --resource-group $RESOURCE_GROUP \
-  #         --location centralus \
-  #         --environment 'my-container-apps' \
-  #         --image heartdiseaseapp.azurecr.io/heartdisease:latest \
-  #         --target-port 8080 \
-  #         --ingress external \
-  #         --query properties.configuration.ingress.fqdn \
-  #         --env-vars "IMAGE_NAME=$IMAGE_NAME" "WORKSPACE=$WORKSPACE" "WORKSPACE_LOCATION=$WORKSPACE_LOCATION" "SUBSCRIPTION=$SUBSCRIPTION" "RESOURCE_GROUP=$RESOURCE_GROUP" "AZURE_CLIENT_ID=$AZURE_CLIENT_ID" "AZURE_TENANT_ID=$AZURE_TENANT_ID" "AZURE_CLIENT_SECRET=$AZURE_CLIENT_SECRET" 
+  azure-deploy:
+    needs: azure-container
+    runs-on: ubuntu-latest
+    steps:
+      - name: Azure CLI login
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }} 
+      - name: Deploy image to containerapp 
+        run: |
+          az webapp create --resource-group $RESOURCE_GROUP --plan heartdiseaseplan --name heartdiseaseapp --multicontainer-config-type compose --multicontainer-config-file docker-compose-azure.yml
