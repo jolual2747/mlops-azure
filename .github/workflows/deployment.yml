@@ -65,6 +65,8 @@ jobs:
     needs: azure-container
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
       - name: Azure CLI login
         uses: azure/login@v1
         with:
