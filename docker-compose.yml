@@ -8,8 +8,8 @@ services:
     image: heartdisease-api:latest
     ports:
       - "81:8000"
-    env_file:
-      - .env
+    # env_file:
+    #   - .env
 
   front:
     depends_on: 

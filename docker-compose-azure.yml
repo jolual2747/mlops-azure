@@ -5,8 +5,6 @@ services:
     image: heartdiseaseapp.azurecr.io/heardisease-api:latest
     ports:
       - "81:8000"
-    env_file:
-      - .env
 
   front:
     depends_on: 
