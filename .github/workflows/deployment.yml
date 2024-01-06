@@ -30,7 +30,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install dependencies
-        run: 
+        run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: Run tests
@@ -54,11 +54,11 @@ jobs:
       - name: AZ ACR login
         run: az acr login --name heartdiseaseapp
       - name: Tag images  
-        run: 
+        run: |
           docker tag heartdisease-api:latest heartdiseaseapp.azurecr.io/api:latest
           docker tag heartdisease-front:latest heartdiseaseapp.azurecr.io/front:latest
       - name: Push image to Azure Container Registry 
-        run: 
+        run: |
           docker push heartdiseaseapp.azurecr.io/api:latest
           docker push heartdiseaseapp.azurecr.io/front:latest
   # azure-deploy:
