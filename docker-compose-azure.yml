@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   api:
-    image: heartdiseaseapp.azurecr.io/heardisease-api:latest
+    image: heartdiseaseapp.azurecr.io/heartdisease-api:latest
     ports:
       - "81:8000"
 
