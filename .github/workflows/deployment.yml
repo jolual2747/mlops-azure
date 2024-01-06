@@ -59,8 +59,8 @@ jobs:
           docker tag heartdisease-front:latest heartdiseaseapp.azurecr.io/heartdisease-front:latest
       - name: Push image to Azure Container Registry 
         run: |
-          docker push heartdiseaseapp.azurecr.io/api:latest
-          docker push heartdiseaseapp.azurecr.io/front:latest
+          docker push heartdiseaseapp.azurecr.io/heartdisease-api:latest
+          docker push heartdiseaseapp.azurecr.io/heartdisease-front:latest
   # azure-deploy:
   #   needs: azure-container
   #   runs-on: ubuntu-latest
