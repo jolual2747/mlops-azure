@@ -4,7 +4,6 @@ import streamlit as st
 # Function to make POST
 def get_prediction(data):
     """Make POST request to predict endpoint."""
-
     url = "http://api:8000/predict"
     response = requests.post(url, json=data)
     prediction = response.json()
