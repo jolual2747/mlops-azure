@@ -20,4 +20,4 @@ services:
        dockerfile: Dockerfile
     image: heartdisease-front:latest
     ports:
-      - "80:80"
+      - "8000:80"

@@ -9,6 +9,5 @@ RUN python -m pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 EXPOSE 8000
-EXPOSE 81
 
 CMD ["uvicorn", "app.app:app", "--host", "0.0.0.0", "--port", "8000"]

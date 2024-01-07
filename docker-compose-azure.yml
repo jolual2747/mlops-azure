@@ -15,4 +15,4 @@ services:
        dockerfile: Dockerfile
     image: heartdiseaseapp.azurecr.io/heartdisease-front:latest
     ports:
-      - "80:80"
+      - "8000:80"

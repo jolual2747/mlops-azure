@@ -2,6 +2,12 @@
 
 This project showcases a comprehensive MLOps pipeline using Azure services. Here's a breakdown of how the project was implemented:
 
+## App
+This is the app deployed on Azure Web Apps ready for make inference.
+
+![Heart disease app](media/heartdiseaseapp.gif)
+
+
 ## Model Training and Tracking
 
 - Trained a heart disease prediction model using Azure Machine Learning.
