@@ -2,11 +2,15 @@
 
 This project showcases a comprehensive MLOps pipeline using Azure services. Here's a breakdown of how the project was implemented:
 
+## Architecture and Deployment
+This is the app deployed on Azure Cloud under the following architecture:
+
+<img src="media/architecture.png" alt="Architecture">
+
 ## App
-This is the app deployed on Azure Web Apps ready for make inference.
+The app has 2 components. Frontend and Backend. In the image below you can see how the app works:
 
 <img src="media/heartdiseaseapp.gif" alt="Heart disease app" width="768" height="432">
-
 
 
 ## Model Training and Tracking
