@@ -106,5 +106,5 @@ def test_api():
         'bulk_predict',
         json=raw_data_test2,
     )
-    assert response.status_code == 201
+    assert response.status_code == 200
     assert response2.status_code == 200
